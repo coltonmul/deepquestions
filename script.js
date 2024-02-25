@@ -1,75 +1,83 @@
-const randomQuestionDiv = document.getElementById('randomQuestion');
-const phrasesDiv = document.getElementById('phrases');
-const overlay = document.getElementById('overlay');
+document.addEventListener('DOMContentLoaded', function () {
+  const randomButton = document.getElementById('randomButton');
+  const level1Button = document.getElementById('level1Button');
+  const level2Button = document.getElementById('level2Button');
+  const level3Button = document.getElementById('level3Button');
+  const questionContainer = document.getElementById('questionContainer');
+  const phrasesText = document.getElementById('phrasesText');
 
-// Array to hold button names
-const buttonNames = [
-    ["Level i", "Level ii", "Level iii"],
-    ["Surface Level", "Below the Surface", "Deep"],
-    ["Light", "Medium", "Heavy"],
-    ["White", "Rosé", "Red"],
-    ["Bush League", "Minors", "Majors"],
-    ["Beer", "Tequila", "Moonshine"],
-    ["Appetizer", "Salad", "Main Course"],
-    ["Rare", "Medium", "Well Done"],
-    ["Dating", "Engaged", "Married"]
-];
+  const fetchRandomQuestion = (level) => {
+    fetch(`level${level}qs.csv`)
+      .then(response => response.text())
+      .then(data => {
+        const questions = data.split('\n').filter(q => q.trim() !== '');
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        const randomQuestion = questions[randomIndex];
+        questionContainer.innerHTML = randomQuestion;
+        questionContainer.style.opacity = 1;
+      });
+  };
 
-// Function to fetch questions from CSV
-function getQuestions(level) {
-    fetch(level + '.csv')
-        .then(response => response.text())
-        .then(data => {
-            const questions = data.split('\n');
-            const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-            showOverlay();
-            randomQuestionDiv.innerHTML = randomQuestion;
-            randomQuestionDiv.classList.add('fade-in');
-            setTimeout(() => {
-                randomQuestionDiv.classList.remove('fade-in');
-            }, 1000);
-        });
-}
-
-// Function to fetch phrases from CSV
-function getPhrases() {
+  const fetchPhrases = () => {
     fetch('phrases.csv')
-        .then(response => response.text())
-        .then(data => {
-            const phrases = data.split('\n');
-            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-            phrasesDiv.innerHTML = randomPhrase;
-            phrasesDiv.classList.add('fade-in');
-            setTimeout(() => {
-                phrasesDiv.classList.remove('fade-in');
-            }, 1000);
-        });
-}
+      .then(response => response.text())
+      .then(data => {
+        const phrases = data.split('\n').filter(p => p.trim() !== '');
+        const randomIndex = Math.floor(Math.random() * phrases.length);
+        const randomPhrase = phrases[randomIndex];
+        phrasesText.innerHTML = randomPhrase;
+        phrasesText.style.opacity = 1;
+      });
+  };
 
-// Function to display overlay
-function showOverlay() {
-    overlay.style.display = 'flex';
-}
+  const fetchButtonNames = () => {
+    fetch('buttonnames.csv')
+      .then(response => response.text())
+      .then(data => {
+        const buttonNames = data.split('\n').filter(b => b.trim() !== '');
+        const randomIndex = Math.floor(Math.random() * buttonNames.length);
+        const [level1Name, level2Name, level3Name] = buttonNames[randomIndex].split(',');
+        level1Button.innerHTML = level1Name;
+        level2Button.innerHTML = level2Name;
+        level3Button.innerHTML = level3Name;
+      });
+  };
 
-// Function to hide overlay
-function hideOverlay() {
-    overlay.style.display = 'none';
-}
-
-// Event listener for Level buttons
-document.querySelectorAll('.level-button').forEach(button => {
-    button.addEventListener('click', () => {
-        getQuestions(button.innerHTML.toLowerCase().replace(' ', '') + 'qs');
-        if (Math.random() < 0.2) {
-            getPhrases();
-        }
-    });
-});
-
-// Event listener for Random Question button
-document.querySelector('.random-button').addEventListener('click', () => {
-    getQuestions('level3qs');
+  randomButton.addEventListener('click', () => {
+    questionContainer.style.opacity = 0;
+    fetchRandomQuestion(3);
     if (Math.random() < 0.2) {
-        getPhrases();
+      phrasesText.style.opacity = 0;
+      fetchPhrases();
     }
+  });
+
+  level1Button.addEventListener('click', () => {
+    questionContainer.style.opacity = 0;
+    fetchRandomQuestion(1);
+    if (Math.random() < 0.2) {
+      phrasesText.style.opacity = 0;
+      fetchPhrases();
+    }
+  });
+
+  level2Button.addEventListener('click', () => {
+    questionContainer.style.opacity = 0;
+    fetchRandomQuestion(2);
+    if (Math.random() < 0.2) {
+      phrasesText.style.opacity = 0;
+      fetchPhrases();
+    }
+  });
+
+  level3Button.addEventListener('click', () => {
+    questionContainer.style.opacity = 0;
+    fetchRandomQuestion(3);
+    if (Math.random() < 0.2) {
+      phrasesText.style.opacity = 0;
+      fetchPhrases();
+    }
+  });
+
+  fetchButtonNames();
 });
