@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Great Questions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">1000 Great Questions</h1>
+        <button class="random-button" onclick="getRandomQuestion()">Random Question</button>
+        <div class="random-question" id="randomQuestion"></div>
+        <div class="phrases" id="phrases"></div>
+        <button class="level-button" onclick="getQuestions('level1qs')">Level 1</button>
+        <button class="level-button" onclick="getQuestions('level2qs')">Level 2</button>
+        <button class="level-button" onclick="getQuestions('level3qs')">Level 3</button>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <p>You got caught trying to skip questions.</p>
+            <button onclick="hideOverlay()">I'm sorry, I'll answer the question.</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
