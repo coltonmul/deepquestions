@@ -13,6 +13,10 @@ h1 {
   font-weight: bold;
 }
 
+p {
+  text-align: center;
+}
+
 button {
   color: white;
   background-color: transparent;
