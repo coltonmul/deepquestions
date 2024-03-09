@@ -116,16 +116,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener for click on submit button
     document.getElementById('submit').addEventListener('click', getQuestion);
+
+    const hideMobileKeyboardOnReturn = (keyboardEvent) => {
+    element.addEventListener('keyup', (keyboardEvent) => {
+        if (keyboardEvent.code === 'Enter') {
+            element.blur();
+            }
+        });
+    };
+
+    document.querySelementectorAll('[type=search]').forEach((element) => {
+    hideMobileKeyboardOnReturn(element);
+    }); 
 });
 
-// script.js
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Other existing code...
-
-    // Event listener for timer button click
-    document.getElementById('timerButton').addEventListener('click', function() {
-        window.location.href = 'timer.html';
-    });
-});
-
+    const hideMobileKeyboardOnReturn = (keyboardEvent) => {
+        element.addEventListener('keyup', (keyboardEvent) => {
+            if (keyboardEvent.code === 'Enter') {
+                element.blur();
+            }
+        });
+    };
+    
+    document.querySelementectorAll('[type=search]').forEach((element) => {
+        hideMobileKeyboardOnReturn(element);
+}); 
