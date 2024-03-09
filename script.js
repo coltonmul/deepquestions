@@ -117,3 +117,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for click on submit button
     document.getElementById('submit').addEventListener('click', getQuestion);
 });
+
+// script.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Other existing code...
+
+    // Event listener for timer button click
+    document.getElementById('timerButton').addEventListener('click', function() {
+        window.location.href = 'timer.html';
+    });
+});
+
