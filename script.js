@@ -107,16 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchRandomQuestion(3);
     });
 
-    // Event listener for enter key press on question number input
-    questionNumberInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            getQuestion();
-        }
-    });
-
-    // Event listener for click on submit button
-    document.getElementById('submit').addEventListener('click', getQuestion);
-
     // Function to hide mobile keyboard on "Enter" press
     const hideMobileKeyboardOnReturn = () => {
         questionNumberInput.blur();
@@ -127,17 +117,24 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'Enter') {
             hideMobileKeyboardOnReturn();
         }
+    });
 
-        function appendToInput(digit) {
+    // Keypad button functionalities
+    document.querySelectorAll('.keypad-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const digit = button.textContent;
+            appendToInput(digit);
+        });
+    });
+
+    document.getElementById('clearButton').addEventListener('click', clearInput);
+    document.getElementById('submitKeypad').addEventListener('click', getQuestion);
+});
+
+function appendToInput(digit) {
     document.getElementById('questionNumber').value += digit;
 }
 
 function clearInput() {
     document.getElementById('questionNumber').value = '';
 }
-
-function submitKeypad() {
-    getQuestion();
-}
-    });
-});
