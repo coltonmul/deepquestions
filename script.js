@@ -127,5 +127,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'Enter') {
             hideMobileKeyboardOnReturn();
         }
+
+        function appendToInput(digit) {
+    document.getElementById('questionNumber').value += digit;
+}
+
+function clearInput() {
+    document.getElementById('questionNumber').value = '';
+}
+
+function submitKeypad() {
+    getQuestion();
+}
     });
 });
