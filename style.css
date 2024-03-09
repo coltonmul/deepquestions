@@ -1,77 +1,77 @@
 body {
-  text-align: center;
-  background-color: black;
-  color: white;
-  font-family: Helvetica, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: Helvetica, sans-serif;
 }
 
 header {
-  text-align: center;
-  padding: 20px 0;
+    text-align: center;
+    padding: 20px 0;
 }
 
 h1 {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 p {
-  text-align: center;
+    text-align: center;
 }
 
 button {
-  color: white;
-  background-color: transparent;
-  border: 2px solid white;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  box-shadow: 0 0 20px white;
+    box-shadow: 0 0 20px white;
 }
 
 footer {
-  text-align: center;
-  margin-top: 500px;
+    text-align: center;
+    margin-top: 500px;
 }
 
 #questionContainer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 140%;
-  min-height: 200px; /* Adjust the height as needed */
-  max-height: 200px; /* Adjust the height as needed */
-  overflow-y: auto; /* Add scrollbar if the content exceeds the height */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 140%;
+    min-height: 200px; /* Adjust the height as needed */
+    max-height: 200px; /* Adjust the height as needed */
+    overflow-y: auto; /* Add scrollbar if the content exceeds the height */
 }
 
 #phrasesText {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 100%px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 100%;
 }
 
 #levelButtons {
-  text-align: center;
-  margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 #numberContainer {
-  text-align: center;
-  margin-top: 20px; /* Adjust margin as needed */
+    text-align: center;
+    margin-top: 20px; /* Adjust margin as needed */
 }
 
 .input-field { 
-  text-align: center;
-  display: block; 
-  align-items: center;
-  justify-content: center;
-  width: 100%; 
-  height: 20px; 
-  border: 3px solid black; 
-  border-radius: 10px; 
-  margin: 10px;
+    text-align: center;
+    display: block; 
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    height: 20px; 
+    border: 3px solid black; 
+    border-radius: 10px; 
+    margin: 10px;
 }
 
 #questionNumber {
@@ -80,3 +80,16 @@ footer {
     font-family: Helvetica, sans-serif; /* Match paragraph font style */
 }
 
+/* New styles for the timer */
+#timer {
+    font-size: 400%;
+    text-align: center;
+    margin-bottom: 20px; /* Add some space below the timer */
+}
+
+/* Flex container for the button rows */
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to the next line */
+    justify-content: center; /* Center items horizontally */
+}
