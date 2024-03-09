@@ -32,22 +32,40 @@
     Or pick a question from 1-1000
   </p>
   <div id="numberContainer">
-  <input type="number" id="questionNumber" min="1" max="1000" placeholder="1-1000" maxlength="4" >
-  <button id="submit" onclick="getQuestion()">Submit</button>
+    <input type="number" id="questionNumber" min="1" max="1000" placeholder="1-1000" maxlength="4">
+    <button id="submit" onclick="getQuestion()">Submit</button>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <div id="keypad">
+    <div class="keypad-row">
+      <button class="keypad-button" onclick="appendToInput(1)">1</button>
+      <button class="keypad-button" onclick="appendToInput(2)">2</button>
+      <button class="keypad-button" onclick="appendToInput(3)">3</button>
+    </div>
+    <div class="keypad-row">
+      <button class="keypad-button" onclick="appendToInput(4)">4</button>
+      <button class="keypad-button" onclick="appendToInput(5)">5</button>
+      <button class="keypad-button" onclick="appendToInput(6)">6</button>
+    </div>
+    <div class="keypad-row">
+      <button class="keypad-button" onclick="appendToInput(7)">7</button>
+      <button class="keypad-button" onclick="appendToInput(8)">8</button>
+      <button class="keypad-button" onclick="appendToInput(9)">9</button>
+    </div>
+    <div class="keypad-row">
+      <button id="submitKeypad" class="keypad-button" onclick="submitKeypad()">Submit</button>
+      <button class="keypad-button" onclick="appendToInput(0)">0</button>
+      <button class="keypad-button" onclick="clearInput()">Del</button>
+    </div>
+  </div>
+
+  <br><br><br>
 
   <p>
     <button id="randomButton">Pull A Random Question</button>
   </p>
-
 </main>
+
 
 <footer>
   <p> <font size="-1"> <a href="https://ColtonMulligan.com" style="color: lightgray" target="_blank" rel="noopener">Colton</a> built this little site initially in a few hours using ChatGPT and Gemini. 
