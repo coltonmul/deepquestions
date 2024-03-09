@@ -5,7 +5,7 @@ function startTimer(duration) {
     var timerDisplay = document.getElementById('timer');
     var timer = duration, minutes, seconds;
 
-    setInterval(function () {
+    function updateTimer() {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -13,122 +13,71 @@ function startTimer(duration) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         timerDisplay.textContent = minutes + ":" + seconds;
-
-        // Check if the timer has reached 0:59 seconds
-        if (minutes === 0 && seconds === 59) {
-            timerDisplay.style.color = 'yellow';
-        }
-
-        // Check if the timer has reached 0:29 seconds
-        if (minutes === 0 && seconds === 29) {
-            timerDisplay.style.color = 'red';
-        }
-
-        // Check if the timer has reached 0:00 seconds
-        if (minutes === 0 && seconds === 0) {
-            // Keep flashing 0:00
-            setInterval(() => {
-                timerDisplay.style.visibility = (timerDisplay.style.visibility === 'hidden') ? 'visible' : 'hidden';
-            }, 500);
-        }
 
         if (--timer < 0) {
             timer = duration;
         }
-    }, 1000);
+    }
+
+    // Update timer initially
+    updateTimer();
+
+    // Update timer every second
+    var timerInterval = setInterval(updateTimer, 1000);
+
+    return timerInterval; // Return the interval ID for further use
 }
+
+// Initial call to start timer at 0:00
+var timerInterval = startTimer(0);
 
 // Event listeners for timer buttons
 document.getElementById('btn1min').addEventListener('click', function() {
-    startTimer(60);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(60);
 });
 
 document.getElementById('btn90sec').addEventListener('click', function() {
-    startTimer(90);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(90);
 });
 
 document.getElementById('btn2min').addEventListener('click', function() {
-    startTimer(120);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(120);
 });
 
 document.getElementById('btn3min').addEventListener('click', function() {
-    startTimer(180);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(180);
 });
 
 document.getElementById('btn5min').addEventListener('click', function() {
-    startTimer(300);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(300);
 });
 
 document.getElementById('btn6min').addEventListener('click', function() {
-    startTimer(360);
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(360);
 });
 
-// timer.js
-
-let timerInterval;
-let timerDisplay = document.getElementById('timer');
-let customTimeInput = document.getElementById('customTime');
-let startButton = document.getElementById('startButton');
-let stopButton = document.getElementById('stopButton');
-let resetButton = document.getElementById('resetButton');
-let lastTime = 0;
-
-// Function to start countdown timer
-function startTimer(duration) {
-    let timer = duration, minutes, seconds;
-
-    timerInterval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        timerDisplay.textContent = minutes + ":" + seconds;
-
-        // Check if the timer has reached 0:59 seconds
-        if (minutes === 0 && seconds === 59) {
-            timerDisplay.style.color = 'yellow';
-        }
-
-        // Check if the timer has reached 0:29 seconds
-        if (minutes === 0 && seconds === 29) {
-            timerDisplay.style.color = 'red';
-        }
-
-        // Check if the timer has reached 0:00 seconds
-        if (minutes === 0 && seconds === 0) {
-            // Keep flashing 0:00
-            setInterval(() => {
-                timerDisplay.style.visibility = (timerDisplay.style.visibility === 'hidden') ? 'visible' : 'hidden';
-            }, 500);
-        }
-
-        if (--timer < 0) {
-            clearInterval(timerInterval);
-        }
-    }, 1000);
-}
-
-// Function to start the timer with custom time
-function startCustomTimer() {
-    let customTime = parseInt(customTimeInput.value);
-    if (customTime > 0) {
-        lastTime = customTime;
-        startTimer(customTime);
+// Event listener for custom time input and start button
+document.getElementById('startButton').addEventListener('click', function() {
+    var customTime = parseInt(document.getElementById('customTime').value);
+    if (!isNaN(customTime) && customTime > 0) {
+        clearInterval(timerInterval); // Stop the previous timer
+        timerInterval = startTimer(customTime);
     }
-}
+});
 
-// Event listener for Start button
-startButton.addEventListener('click', startCustomTimer);
-
-// Event listener for Stop button
-stopButton.addEventListener('click', function() {
+// Event listener for stop button
+document.getElementById('stopButton').addEventListener('click', function() {
     clearInterval(timerInterval);
 });
 
-// Event listener for Reset button
-resetButton.addEventListener('click', function() {
-    startTimer(lastTime);
+// Event listener for reset button
+document.getElementById('resetButton').addEventListener('click', function() {
+    clearInterval(timerInterval); // Stop the previous timer
+    timerInterval = startTimer(0);
 });
-
