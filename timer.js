@@ -14,6 +14,24 @@ function startTimer(duration) {
 
         timerDisplay.textContent = minutes + ":" + seconds;
 
+        // Check if the timer has reached 0:59 seconds
+        if (minutes === 0 && seconds === 59) {
+            timerDisplay.style.color = 'yellow';
+        }
+
+        // Check if the timer has reached 0:29 seconds
+        if (minutes === 0 && seconds === 29) {
+            timerDisplay.style.color = 'red';
+        }
+
+        // Check if the timer has reached 0:00 seconds
+        if (minutes === 0 && seconds === 0) {
+            // Keep flashing 0:00
+            setInterval(() => {
+                timerDisplay.style.visibility = (timerDisplay.style.visibility === 'hidden') ? 'visible' : 'hidden';
+            }, 500);
+        }
+
         if (--timer < 0) {
             timer = duration;
         }
