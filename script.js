@@ -119,17 +119,33 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Keypad button functionalities
+    // Remove existing event listeners for keypad buttons
     document.querySelectorAll('.keypad-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const digit = button.textContent;
-            appendToInput(digit);
-        });
+        button.removeEventListener('click', keypadButtonClickHandler);
     });
 
+    // Keypad button functionalities
+    document.querySelectorAll('.keypad-button').forEach(button => {
+        button.addEventListener('click', keypadButtonClickHandler);
+    });
+
+    // Remove existing event listener for clear button
+    document.getElementById('clearButton').removeEventListener('click', clearInput);
+
+    // Event listener for clear button
     document.getElementById('clearButton').addEventListener('click', clearInput);
+
+    // Remove existing event listener for submit button
+    document.getElementById('submitKeypad').removeEventListener('click', getQuestion);
+
+    // Event listener for submit button
     document.getElementById('submitKeypad').addEventListener('click', getQuestion);
 });
+
+function keypadButtonClickHandler() {
+    const digit = this.textContent;
+    appendToInput(digit);
+}
 
 function appendToInput(digit) {
     document.getElementById('questionNumber').value += digit;
