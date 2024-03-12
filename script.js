@@ -107,50 +107,38 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchRandomQuestion(3);
     });
 
-    // Function to hide mobile keyboard on "Enter" press
-    const hideMobileKeyboardOnReturn = () => {
-        questionNumberInput.blur();
-    };
-
-    // Event listener for "Enter" key press on the input field
-    questionNumberInput.addEventListener('keyup', (event) => {
+    // Event listener for enter key press on question number input
+    questionNumberInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-            hideMobileKeyboardOnReturn();
+            getQuestion();
         }
     });
 
-    // Remove existing event listeners for keypad buttons
-    document.querySelectorAll('.keypad-button').forEach(button => {
-        button.removeEventListener('click', keypadButtonClickHandler);
-    });
+    // Event listener for click on submit button
+    document.getElementById('submit').addEventListener('click', getQuestion);
 
-    // Keypad button functionalities
-    document.querySelectorAll('.keypad-button').forEach(button => {
-        button.addEventListener('click', keypadButtonClickHandler);
-    });
+    const hideMobileKeyboardOnReturn = (keyboardEvent) => {
+    element.addEventListener('keyup', (keyboardEvent) => {
+        if (keyboardEvent.code === 'Enter') {
+            element.blur();
+            }
+        });
+    };
 
-    // Remove existing event listener for clear button
-    document.getElementById('clearButton').removeEventListener('click', clearInput);
-
-    // Event listener for clear button
-    document.getElementById('clearButton').addEventListener('click', clearInput);
-
-    // Remove existing event listener for submit button
-    document.getElementById('submitKeypad').removeEventListener('click', getQuestion);
-
-    // Event listener for submit button
-    document.getElementById('submitKeypad').addEventListener('click', getQuestion);
+    document.querySelementectorAll('[type=search]').forEach((element) => {
+    hideMobileKeyboardOnReturn(element);
+    }); 
 });
 
-function keypadButtonClickHandler() {
-    const digit = this.textContent;
-    appendToInput(digit);
-}
 
-function appendToInput(digit) {
-    document.getElementById('questionNumber').value += digit;
-}
-
-function clearInput() {
-    document.getElementById('questionNumber').value = '';
-}
+    const hideMobileKeyboardOnReturn = (keyboardEvent) => {
+        element.addEventListener('keyup', (keyboardEvent) => {
+            if (keyboardEvent.code === 'Enter') {
+                element.blur();
+            }
+        });
+    };
+    
+    document.querySelementectorAll('[type=search]').forEach((element) => {
+        hideMobileKeyboardOnReturn(element);
+}); 
